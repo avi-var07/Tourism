@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <title>Destinations</title>
+</head>
+<body class="bg-gray-900 text-white">
+    
+    <h1 class="text-4xl text-center font-bold mt-8">Popular Destinations</h1>
+
+    <nav class="flex justify-between items-center bg-gray-800 p-4 mt-6">
+        <a href="mainPage.html" class="text-xl font-bold">Tour Operator</a>
+        <ul class="flex space-x-4">
+            <li><a href="mainpage.html" class="hover:text-yellow-400">Home</a></li>
+            <li class="text-yellow-400"><a href="destination.html">Destination</a></li>
+            <li><a href="gallery.html" class="hover:text-yellow-400">Gallery</a></li>
+            <li><a href="feedback.html" class="hover:text-yellow-400">Feedback</a></li>
+            <li><a href="index.html" class="hover:text-red-400">Logout</a></li>
+        </ul>
+    </nav>
+
+    <div class="container mx-auto px-4 py-8">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <!-- Destination Box -->
+            <div class="bg-gray-800 p-4 rounded-lg text-center hover:scale-105 transition">
+                <img src="images/destination/goa1.jpg" class="w-full h-60 object-cover rounded-md">
+                <h2 class="text-lg mt-2">Goa</h2>
+                <form method="POST" action="info.php">
+                    <input type="submit" name="goa" value="Visit"
+                        class="bg-blue-500 px-4 py-2 rounded-md mt-2 inline-block hover:bg-blue-600 cursor-pointer">
+                </form>
+            </div>
+
+            <div class="bg-gray-800 p-4 rounded-lg text-center hover:scale-105 transition">
+                <img src="images/destination/kerala1.jpg" class="w-full h-60 object-cover rounded-md">
+                <h2 class="text-lg mt-2">Kerala</h2>
+                <form method="POST" action="info.php">
+                    <input type="submit" name="kerala" value="Visit"
+                        class="bg-blue-500 px-4 py-2 rounded-md mt-2 inline-block hover:bg-blue-600 cursor-pointer">
+                </form>
+            </div>
+
+            <div class="bg-gray-800 p-4 rounded-lg text-center hover:scale-105 transition">
+                <img src="images/destination/mysore1.jpg" class="w-full h-60 object-cover rounded-md">
+                <h2 class="text-lg mt-2">Mysore</h2>
+                <form method="POST" action="info.php">
+                    <input type="submit" name="mysore" value="Visit"
+                        class="bg-blue-500 px-4 py-2 rounded-md mt-2 inline-block hover:bg-blue-600 cursor-pointer">
+                </form>
+            </div>
+
+            <div class="bg-gray-800 p-4 rounded-lg text-center hover:scale-105 transition">
+                <img src="images/destination/ladakh1.jpg" class="w-full h-60 object-cover rounded-md">
+                <h2 class="text-lg mt-2">Ladakh</h2>
+                <form method="POST" action="info.php">
+                    <input type="submit" name="ladakh" value="Visit"
+                        class="bg-blue-500 px-4 py-2 rounded-md mt-2 inline-block hover:bg-blue-600 cursor-pointer">
+                </form>
+            </div>
+
+            <div class="bg-gray-800 p-4 rounded-lg text-center hover:scale-105 transition">
+                <img src="images/destination/tajmahal1.jpg" class="w-full h-60 object-cover rounded-md">
+                <h2 class="text-lg mt-2">Agra</h2>
+                <form method="POST" action="info.php">
+                    <input type="submit" name="agra" value="Visit"
+                        class="bg-blue-500 px-4 py-2 rounded-md mt-2 inline-block hover:bg-blue-600 cursor-pointer">
+                </form>
+            </div>
+
+            <div class="bg-gray-800 p-4 rounded-lg text-center hover:scale-105 transition">
+                <img src="images/destination/india_gate1.jpg" class="w-full h-60 object-cover rounded-md">
+                <h2 class="text-lg mt-2">India Gate</h2>
+                <form method="POST" action="info.php">
+                    <input type="submit" name="india_gate" value="Visit"
+                        class="bg-blue-500 px-4 py-2 rounded-md mt-2 inline-block hover:bg-blue-600 cursor-pointer">
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <footer class="text-center mt-8 py-4 bg-gray-800">
