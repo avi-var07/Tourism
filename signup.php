@@ -1,7 +1,8 @@
 <?php
 session_start();
 // Database Connection
-$con = mysqli_connect('localhost', 'root', '', 'travel');
+$con = mysqli_connect('localhost', 'root', '', 'travel', 3306);
+
 
 if (!$con) {
     die("Connection failed: " . mysqli_connect_error());

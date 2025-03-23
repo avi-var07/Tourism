@@ -1,84 +1,110 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-	<title>Booking Form</title>
-	<link rel="stylesheet" type="text/css" href="css/booking.css">
-	<script>
-		function validateForm() {
-			if (isEmpty(document.getElementById('data_3').value.trim())) {
-				alert('First name is required!');
-				return false;
-			}
-			if (isEmpty(document.getElementById('data_4').value.trim())) {
-				alert('Last name is required!');
-				return false;
-			}
-			if (!validateEmail(document.getElementById('data_5').value.trim())) {
-				alert('Email must be a valid email address!');
-				return false;
-			}
-			return true;
-		}
-		function isEmpty(str) { return (str.length == 0 || !str.trim()); }
-		function validateEmail(email) {
-			var re = "";
-			return isEmpty(email) || re.test(email);
-		}
-	</script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tour Booking Form</title>
+    <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body>
-	<div class="main">
-		<ul>
-			<ul class="list">
-			<li class="logo"><a href="mainPage.html"><img src="earth-globe.png" alt="Logo" style="width:36px;height:36px"></a></li>
-			<div class="search">
-                <form method="POST" action="info.php">
-                  <input type="text" name="search_p" placeholder="Search.." size="50">
-              
-                  <input type="image" name="submit_p" src="search_icon.png" alt="Search image" style="width:22;height:22; margin-left: 35px;">
-                </form>
-            </div>
-			</ul>
-			<ul class="list2">
-			<li><a href="mainPage.html">Home</a></li>
-			<li><a id="long" href="destination.html">Destination</a></li>
-			<li><a href="gallery.html">Gallery</a></li>
-			<li><a href="feedback.html">Feedback</a></li>
-			<li><a href="index.html">Logout</a></li>
-			</ul>
-		</ul>
-	</div>
-	<h1>Tour Booking</h1>
-	<div class="container">
-		<form method="POST" action="booking.php" name="form" onsubmit="return validateForm()">
-			<div class="textbox">
-				<input type="text" placeholder="First Name" name="ffirst" value=""  onkeypress="return /[a-zA-Z]/i.test(event.key)" required>  
-			</div>
+<body class="bg-gray-100">
 
-			<div class="textbox">
-				<input type="text" placeholder="Last Name" name="flast" value="" onkeypress="return /[a-zA-Z]/i.test(event.key)" required> 
-			</div>
+    <nav class="bg-gray-800 p-4">
+        <div class="container mx-auto flex justify-between items-center">
+            <a href="mainPage.html" class="text-white text-lg font-bold">Tour Operator</a>
+            <ul class="flex space-x-6">
+                <li><a href="mainPage.html" class="text-white hover:text-yellow-400">Home</a></li>
+                <li><a href="destination.html" class="text-white hover:text-yellow-400">Destination</a></li>
+                <li><a href="gallery.html" class="text-white hover:text-yellow-400">Gallery</a></li>
+                <li><a href="feedback.html" class="text-white hover:text-yellow-400">Feedback</a></li>
+				<li><a href="http://localhost:8080/Project/Tourism/booking.html" class=" text-white hover:text-yellow-400">Bookings</a></li>
+                <li><a href="signup.php" class="text-white hover:text-yellow-400">SignUp/Login</a></li>
+            </ul>
+        </div>
+    </nav>
 
-			<div class="textbox">
-				<input type="text" placeholder="Email" name="femail" value="" required pattern="[a-z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-z0-9-]+.[a-z]{2,4}" title="Invalid Email">
-			</div>
+    <!-- Booking Form -->
+    <div class="flex justify-center items-center min-h-screen">
+        <div class="bg-white p-8 rounded-lg shadow-lg w-full max-w-lg">
+            <h1 class="text-2xl font-bold text-center text-gray-800 mb-6">Book A Memory with Us</h1>
+            <form method="POST" action="booking.php" name="form" onsubmit="return validateForm()" class="space-y-4">
 
-			<div class="textbox">
-				<input type="text" placeholder="City" name="city" value="" onkeypress="return /[a-zA-Z]/i.test(event.key)" required>
-			</div>
+                <input type="text" name="ffirst" placeholder="First Name" class="w-full p-3 border rounded-lg focus:ring focus:ring-orange-300" required>
+                <input type="text" name="flast" placeholder="Last Name" class="w-full p-3 border rounded-lg focus:ring focus:ring-orange-300" required>
+                <input type="email" name="femail" placeholder="Email" class="w-full p-3 border rounded-lg focus:ring focus:ring-orange-300" required>
 
-			<div class="textbox">
-				<input type="text" placeholder="Phone" name="fphone" value="" onkeypress="return /[0-9]/i.test(event.key)" maxlength="10" pattern="([0-9]){10,}" required>
-			</div>
+            
+                <input type="text" id="pincode" name="pincode" required maxlength="6" pattern="[0-9]{6}"
+                class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:border-blue-500"
+                placeholder="Pincode" onkeyup="fetchLocation()">
 
-			<div class="textbox">
-				<input type="text" placeholder="Destination" name="fdesti" value="" required>
-			</div>
-			<div class="btn">
-				<input name="submit" value="Submit" type="submit">
-			</div>
-		</form>
-	</div>
+            
+                <input type="text" id="city" name="city" placeholder="City" class="w-full p-3 border rounded-lg focus:ring focus:ring-orange-300" readonly required>
+                <input type="text" id="state" name="state" placeholder="State" class="w-full p-3 border rounded-lg focus:ring focus:ring-orange-300" readonly required>
+
+                <input type="tel" name="fphone" pattern="[0-9]{10}" maxlength="10" placeholder="Phone" class="w-full p-3 border rounded-lg focus:ring focus:ring-orange-300" pattern="[0-9]{10}" required>
+                <input type="text" name="fdesti" placeholder="Destination" class="w-full p-3 border rounded-lg focus:ring focus:ring-orange-300" required>
+
+                <button type="submit" class="w-full bg-orange-500 text-white p-3 rounded-lg hover:bg-orange-600 transition duration-300">
+                    Submit
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        function validateForm() {
+            let firstName = document.forms["form"]["ffirst"].value.trim();
+            let lastName = document.forms["form"]["flast"].value.trim();
+            let email = document.forms["form"]["femail"].value.trim();
+            let phone = document.forms["form"]["fphone"].value.trim();
+            let pincode = document.getElementById("pincode").value.trim();
+
+            if (firstName === "" || lastName === "") {
+                alert("First and Last name are required!");
+                return false;
+            }
+            if (!/^\S+@\S+\.\S+$/.test(email)) {
+                alert("Please enter a valid email!");
+                return false;
+            }
+            if (!/^\d{10}$/.test(phone)) {
+                alert("Phone number must be 10 digits!");
+                return false;
+            }
+            if (!/^\d{6}$/.test(pincode)) {
+                alert("Pincode must be 6 digits!");
+                return false;
+            }
+            return true;
+        }
+
+        function fetchLocation() {
+            let pincode = document.getElementById("pincode").value;
+            let cityField = document.getElementById("city");
+            let stateField = document.getElementById("state");
+
+            if (pincode.length === 6) {
+                fetch(`https://api.postalpincode.in/pincode/${pincode}`)
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data[0] && data[0].Status === "Success" && data[0].PostOffice) {
+                            cityField.value = data[0].PostOffice[0].District;
+                            stateField.value = data[0].PostOffice[0].State;
+                        } else {
+                            cityField.value = "";
+                            stateField.value = "";
+                            alert("Invalid Pincode! Please enter a valid one.");
+                        }
+                    })
+                    .catch(error => {
+                        console.error("Error fetching location:", error);
+                        cityField.value = "";
+                        stateField.value = "";
+                        alert("Could not fetch location. Please try again.");
+                    });
+            }
+        }
+    </script>
 
 </body>
 </html>
